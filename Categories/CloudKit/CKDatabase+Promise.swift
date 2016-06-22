@@ -15,23 +15,23 @@ import PromiseKit
 */
 extension CKDatabase {
     public func fetchRecordWithID(recordID: CKRecordID) -> Promise<CKRecord> {
-        return Promise { fetchRecordWithID(recordID, completionHandler: $0.resolve) }
+        return Promise { fetch(withRecordID: recordID, completionHandler: $0.resolve) }
     }
 
     public func fetchRecordZoneWithID(recordZoneID: CKRecordZoneID) -> Promise<CKRecordZone> {
-        return Promise { fetchRecordZoneWithID(recordZoneID, completionHandler: $0.resolve) }
+        return Promise { fetch(withRecordZoneID: recordZoneID, completionHandler: $0.resolve) }
     }
 
     public func fetchSubscriptionWithID(subscriptionID: String) -> Promise<CKSubscription> {
-        return Promise { fetchSubscriptionWithID(subscriptionID, completionHandler: $0.resolve) }
+        return Promise { fetch(withSubscriptionID: subscriptionID, completionHandler: $0.resolve) }
     }
 
     public func fetchAllRecordZones() -> Promise<[CKRecordZone]> {
-        return Promise { fetchAllRecordZonesWithCompletionHandler($0.resolve) }
+        return Promise { fetchAll(completionHandler: $0.resolve) }
     }
 
     public func fetchAllSubscriptions() -> Promise<[CKSubscription]> {
-        return Promise { fetchAllSubscriptionsWithCompletionHandler($0.resolve) }
+        return Promise { fetchAll(completionHandler: $0.resolve) }
     }
 
     public func save(record: CKRecord) -> Promise<CKRecord> {
@@ -47,15 +47,15 @@ extension CKDatabase {
     }
 
     public func deleteRecordWithID(recordID: CKRecordID) -> Promise<CKRecordID> {
-        return Promise { deleteRecordWithID(recordID, completionHandler: $0.resolve) }
+        return Promise { delete(withRecordID: recordID, completionHandler: $0.resolve) }
     }
 
     public func deleteRecordZoneWithID(zoneID: CKRecordZoneID) -> Promise<CKRecordZoneID> {
-        return Promise { deleteRecordZoneWithID(zoneID, completionHandler: $0.resolve) }
+        return Promise { delete(withRecordZoneID: zoneID, completionHandler: $0.resolve) }
     }
 
     public func deleteSubscriptionWithID(subscriptionID: String) -> Promise<String> {
-        return Promise { deleteSubscriptionWithID(subscriptionID, completionHandler: $0.resolve) }
+        return Promise { delete(withSubscriptionID: subscriptionID, completionHandler: $0.resolve) }
     }
 
     public func performQuery(query: CKQuery, inZoneWithID zoneID: CKRecordZoneID? = nil) -> Promise<[CKRecord]> {
